@@ -1,5 +1,6 @@
 var balloon,balloonImage1,balloonImage2;
 var database,position;
+var bg;
 
 function preload(){
 
@@ -11,18 +12,20 @@ function preload(){
   }
 
 //Function to set initial environment
-function setup() {
-  
+function setup() {  
   database = firebase.database();
-  
+  //I need help with this as there is a problem with the code and the console indicates that freibase.database(); is not a fucntion, help me, please.
+  console.log("I need help with this, it says firebase.databse is not a fucntion");
+
   createCanvas(1500,700);
+  var balloonPosition = database.ref('balloon/height');
+      balloonPosition.on("value", readPosition, showError);
 
   balloon=createSprite(250,450,150,150);
   balloon.addAnimation("hotAirBalloon",balloonImage1);
   balloon.scale=0.5;
 
-  var balloonPosition = database.ref('balloon/height');
-      balloonPosition.on("value", readPosition, showError);
+  
 
   textSize(20); 
 }
